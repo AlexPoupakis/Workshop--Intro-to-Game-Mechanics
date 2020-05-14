@@ -33,6 +33,8 @@ With some adaptability, the ideas can, of course, be transfered to the Engine of
 ### Game characteristics
 On the more technical side of things, our game was a frame-based shooter with distance units in pixels and time units in frame counts. This choice was made for simplicity's sake and so that we can (easily) slow down the game as much as we want, to closely observe the sprite sequences.
 
+It should be noted that no effort was made towards optimizing the code for speed, memory, or efficiency. Plenty could - and in general should - be done in that regard, however, this project aims at implementing a mini-game in an understandable, entry-level-friendly way. 
+
 
 ### Turret
 The Machine Gun consists of two sprites, its base and head. The provided coordinates indicate the bottom center of the turret. Due to how affine matrix transformations and the drawing canvas work, as well as the fact that the head rotates 360°, the axis origin must be placed in the center of the head (more details in the source code comments). 
@@ -68,3 +70,13 @@ The motion here is **much** simpler; just move from right to left with a constan
 <p align="center">
   <img src="/images/Enemy_2_Animation.gif">
 </p>
+
+
+## End Result
+<p align="center">
+  <img src="/images/screenshot.png">
+</p>
+
+
+## Disclaimer
+No attempt was made to copy _StormWinds The Lost Campaigns_ for commercial purposes or monetary gain! This is a strictly educational, non-profit repository with the sole purpose of introducing some basic concepts of game development to anyone interested. By no means does it promote the exploitation of others' copyrighted creative work nor should it be regarded as such.
