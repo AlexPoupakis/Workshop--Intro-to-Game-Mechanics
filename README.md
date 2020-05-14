@@ -37,6 +37,4 @@ On the more technical side of things, our game was a frame-based shooter with di
 ### Turret
 The Machine Gun consists of two sprites, its base and head. 
 
-<kbd>
-  <img src="https://github.com/AlexPoupakis/Workshop--Intro-to-Game-Mechanics/tree/master/shooter_game/data/sprites/machine_gun_base.png">
-</kbd>
+![](/shooter_game/data/sprites/machine_gun_base.png)
