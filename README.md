@@ -43,9 +43,6 @@ The Machine Gun consists of two sprites, its base and head. The provided coordin
 
 The base sprite is purposefully elongated, sacrificing memory efficiency, in order to represent a more realistic, physical base and simplifying the coordinate offsets in the code. We could obviously trim the sprite down to just the visible part and add the necessary offsets in the code, but since this results in less readable code,  I decided to discard the black magic constants and go with the intuition.
 
-<p align="center">
-  <img src="/images/Enemy_1_Motion_margin.png">
-</p>
 
 ### Enemies
 In the original game, enemies, unlike the turrets, do not have names. So, they will hence be, rather creatively, called Enemy_1 and Enemy_2.
@@ -57,7 +54,15 @@ This is a non-firing enemy with the main goal of inconveniently getting in front
   <img src="/images/Enemy_1_Animation.gif">
 </p>
 
-Its motion is a bit complicated due to the turns and variable speed (only during the turns). To constrain his position inside the frame at all times, we define a margin around the frame borders, which, when crossed, the Enemy_1 will have to pick a new (random) direction and start turning around.
+Its motion is a bit complicated due to the turns and variable speed (only during the turns). To constrain his position inside the frame at all times, we define a margin around the frame borders, which, when crossed, the Enemy_1 will have to pick a new (random) direction and start turning around. This new direction is a obtained by rotating the [normal vector](https://en.wikipedia.org/wiki/Normal_(geometry)) by a random angle in <img src="https://render.githubusercontent.com/render/math?math=[-\frac{\pi}{2}, \frac{\pi}{2}]"> and then we [linearly interpolate](https://en.wikipedia.org/wiki/Linear_interpolation) frame-by-frame between the old and the new direction, to execute a smooth turn. 
+
+<p align="center">
+  <img src="/images/Enemy_1_Motion_margin.png">
+</p>
 
 #### Enemy_2
-This one drops a bomb when it flies above a turret. A "bomb.png" sprite is included in the project files, however the implementation is left to you and should be simple enough once you understand the rest of the code.
+This one drops a bomb when it flies above a turret. A "bomb.png" sprite is included in the project files, however the implementation is left to you and should be simple enough once you understand the rest of the code. The motion here is **much** simpler; just move from right to left with a constant speed. Also, in contrast to other enemies in the original game, this one does not re-enter the frame if it is not destroyed before it exits.
+
+<p align="center">
+  <img src="/images/Enemy_2_Animation.gif">
+</p>
