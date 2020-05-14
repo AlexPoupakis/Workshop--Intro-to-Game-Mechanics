@@ -48,6 +48,13 @@ The base sprite is purposefully elongated, sacrificing memory efficiency, in ord
 In the original game, enemies, unlike the turrets, do not have names. So, they will hence be, rather creatively, called Enemy_1 and Enemy_2.
 
 #### Enemy_1
-This is a non-firing enemy with the main goal of inconveniently getting in front of other enemies or our turrets. Its animation consists of two sprites and looks like this
+This is a non-firing enemy with the main goal of inconveniently getting in front of other enemies or our turrets. Its animation consists of two sprites and looks like this:
 
-![alt text](/images/Enemy_1_Animation.gif "Enemy_1 Animation")
+<p align="center">
+  <img src="/images/Enemy_1_Animation.gif">
+</p>
+
+Its motion is a bit complicated due to the turns and variable speed (only during the turns). To constrain his position inside the frame at all times, we define a margin around the frame borders, which, when crossed, the Enemy_1 will have to pick a new (random) direction and start turning around.
+
+#### Enemy_2
+This one drops a bomb when it flies above a turret. A "bomb.png" sprite is included in the project files, however the implementation is left to you and should be simple enough once you understand the rest of the code.
