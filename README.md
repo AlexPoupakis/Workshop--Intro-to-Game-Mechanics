@@ -35,5 +35,13 @@ On the more technical side of things, our game was a frame-based shooter with di
 
 
 ### Turret
-The Machine Gun consists of two sprites, its base and head. The provided coordinates indicate the bottom center of the turret. 
+The Machine Gun consists of two sprites, its base and head. The provided coordinates indicate the bottom center of the turret. Due to how affine matrix transformations and the drawing canvas work, as well as the fact that the head rotates 360°, the axis origin must be placed in the center of the head (more details in the source code comments). 
 
+<p align="center">
+  <img src="/images/Machine_Gun_Construction.png">
+</p>
+
+The base sprite is purposefully elongated, sacrificing memory efficiency, in order to represent a more realistic, physical base and simplifying the coordinate offsets in the code. We could obviously trim the sprite down to just the visible part and add the necessary offsets in the code, but since this results in less readable code,  I decided to discard the black magic constants and go with the intuition.
+
+
+### Enemies
