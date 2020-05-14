@@ -25,7 +25,7 @@ class Platform{
     turret.display();
   }
   
-  void update(){
-    turret.update();
+  void update(int _frame_counter){
+    turret.update(_frame_counter);
   }
 }

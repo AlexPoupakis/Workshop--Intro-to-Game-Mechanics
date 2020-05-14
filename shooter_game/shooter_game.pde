@@ -1,4 +1,14 @@
+/*
+   Author:      Alex Poupakis
+   Date:        May 7th, 2020
+   Description: Workshop "Intro to Game Mechanics" - Startup Greece Week - May 7h, 2020
+                Implementation of (part of) StormWinds The Lost Campaigns
+   Release:     https://github.com/AlexPoupakis/Workshop--Intro-to-Game-Mechanics
+   License:     GPLv3
+*/
+
 int _FRAME_COUNTER = 0;
+int _FRAMES_PAUSED = 0;
 boolean game_paused = false, pause_key_released = true;
 
 // Lists holding all the bullets and enemies.
@@ -10,13 +20,14 @@ ArrayList<Bullet> gc_bullets = new ArrayList<Bullet>();
 ArrayList<Enemy> gc_enemies = new ArrayList<Enemy>();
 
 // Array of images for the parallax effect and their respective "depths". (01_ground.png is excluded because it looks weird in this context)
+// In our case, the "depth" of each layer signifies the percentage to which that layer will be affected by the mouse offset from the center of the frame.
 PImage[] parallax_background;
 int[] parallax_translation_percentage = {0, 5, 20, 50, 20, 30, 45, 65, 90, 120};
 
 Platform platform;
 
 void setup(){
-  size(800, 700);
+  size(800, 700, P2D);
   
   // Uncomment the line below to slow down the entire game and see the frame sequences in detail.
   //frameRate(10);
@@ -42,6 +53,7 @@ void setup(){
 }
 
 void draw(){
+  // Handle the input of the pause key
   if (keyPressed && (key == 'p') && pause_key_released){
     game_paused = !game_paused;
     pause_key_released = false;
@@ -50,23 +62,29 @@ void draw(){
     pause_key_released = true;
   }
   
+  
+  // --- (possible) UPDATE STEP ---
   if (!game_paused){
-    // UPDATE STEP
-    platform.update();
+    // We need to remove the "time" the game was paused from the global "time" reference, in order to correctly update the physics once we unpause.
+    int non_paused_frame_count = _FRAME_COUNTER - _FRAMES_PAUSED;
+    
+    // actual UPDATE STEP
+    platform.update(non_paused_frame_count);
     
     for (Enemy e : enemies){
-      e.update();
+      e.update(non_paused_frame_count);
     }
     remove_garbage_collected_items(enemies, gc_enemies);
     
     for (Bullet b : bullets){
-      b.update();
+      b.update(non_paused_frame_count);
     }
     remove_garbage_collected_items(bullets, gc_bullets);
   }
+  // -----------------------------
   
   
-  // DISPLAY / RENDER STEP
+  // --- DISPLAY / RENDER STEP ---
   background(150);
   display_parallax_background();
   
@@ -77,8 +95,12 @@ void draw(){
   for (Bullet b : bullets){
     b.display();
   }
+  // -----------------------------
   
+  
+  // Tint the frame grey and display the relevant message if the game is paused.
   if (game_paused){
+    _FRAMES_PAUSED++;
     noStroke();
     fill(150, 50);
     rect(width/2, height/2, width, height);

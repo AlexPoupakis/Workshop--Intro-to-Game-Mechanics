@@ -12,7 +12,7 @@ abstract class Turret{
   }
   
   abstract void display();
-  abstract void update();
+  abstract void update(int _frame_counter);
 }
 
 
@@ -23,11 +23,16 @@ abstract class Enemy{
   PImage[] sprites;
   PImage[] explosion_sprites;
   PImage[] smoke_sprites;
+  int sprite_id = 0, explosion_sprite_id = 0, smoke_sprite_id = 0;
   
   abstract void display();
-  abstract void update();
-  abstract void detect_collision();
+  abstract void update(int _frame_counter);
   abstract void garbage_collect();
+ 
+  // This method accepts the damage by a projectile, deals with it accordingly and returns the actual damage dealt to the enemy.
+  // It is important to have such a method, instead of simply decreasing the health in the collision detection algorithm, because this way we can factor in buffs, shields, critical areas, etc. for each enemy individually.
+  // The row and col arguments refer to the sprite's specific pixel, where the enemy was hit. We do not use these arguments in this implementation, but if you consider armored and weaker areas (variable hit points), they will come in handy.
+  abstract int receive_hit(int damage, int row, int col);
   
   // These methods (some) accept a resize factor (width, height in pixels) for the final sprites
   void load_explosion_sprites(){

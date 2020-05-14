@@ -11,7 +11,7 @@ class MachineGun extends Turret{
     setPosition(x, y);
     
     // We initialize the lastfired frame register in this way because if we set it to zero, the if statement controlling the blast animation will trigger and wrongly display it at the very start.
-    f_lastFired = _FRAME_COUNTER-5;
+    f_lastFired = _FRAME_COUNTER - _FRAMES_PAUSED - 5;
     
     load_sprites();
   }
@@ -48,7 +48,7 @@ class MachineGun extends Turret{
     popMatrix();
   }
   
-  void update(){
+  void update(int _frame_counter){
     // Calculate the angle by which the gun must be rotated (always w.r.t. the right direction, not its current angle) in order to face the mouse.
     // Create a vector that points from the head's center to the mouse (remember, the x, y coordinates show the bottom center of the machine gun).
     PVector MG_to_mouse = new PVector(mouseX-x, mouseY-(y-MG_base.height));
@@ -59,7 +59,7 @@ class MachineGun extends Turret{
     angle = PVector.angleBetween(MG_to_mouse, ang_norm) * sign(MG_to_mouse.y);
     
     // Here we handle the gun's firing, which happens when we are pressing the left mouse button and the gun has reloaded.
-    if (mousePressed && mouseButton == LEFT && _FRAME_COUNTER - f_lastFired > reload){
+    if (mousePressed && mouseButton == LEFT && _frame_counter - f_lastFired > reload){
       // The calculation for the position of the bullets is mathematically simple, but it may be intuitively subtle.
       // The bullets do not know of the rotation of the canvas and all other transformations we make in the animate() method. Therefore, these relations need to be transfered to the bullet's position and velocity.
       // Their position is derived from turning the head's center-to-gun vectors
@@ -74,7 +74,7 @@ class MachineGun extends Turret{
       bullets.add(b1);
       bullets.add(b2);
       
-      f_lastFired = _FRAME_COUNTER;
+      f_lastFired = _frame_counter;
     }
   }
   

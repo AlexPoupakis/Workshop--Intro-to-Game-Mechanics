@@ -2,16 +2,14 @@ class Enemy_2 extends Enemy{
   float hv = 1.5;
   int blade_rotation_period = 5;
   int f_constructed, f_updated, f_destroyed = -1;
-  int sprite_id = 0;
-  int explosion_sprite_id = 0, smoke_sprite_id = 0;
   float angle_of_fall = 0;
   
   Enemy_2(int x, int y){
     this.x = x;
     this.y = y;
     health = 15;
-    f_constructed = _FRAME_COUNTER;
-    f_updated = _FRAME_COUNTER;
+    f_constructed = _FRAME_COUNTER - _FRAMES_PAUSED;
+    f_updated = _FRAME_COUNTER - _FRAMES_PAUSED;
     
     load_sprites();
   }
@@ -46,29 +44,33 @@ class Enemy_2 extends Enemy{
     popMatrix();
   }
   
-  void update(){
+  void update(int _frame_counter){
     // The motion here is exceedingly simple, we have a constant horizontal speed (retained even when falling), a positive frame counter difference and we are moving from right to left, so we decrease the x value
-    x -= hv*(_FRAME_COUNTER-f_updated);
+    x -= hv*(_frame_counter-f_updated);
     
     // If the enemy is destroyed, we need to also update the y value and the angle of fall
     if (health <= 0){
       // This weird piece of code ensures that the f_destroyed is assigned a value only once, and then retains that value
-      f_destroyed = (f_destroyed == -1)? _FRAME_COUNTER : f_destroyed;
+      f_destroyed = (f_destroyed == -1)? _frame_counter : f_destroyed;
       // The y equation is some black magic voodoo that we came up with by considering that a) the free fall equation of height is quadratic in nature and b) there always exists a terminal velocity (which we set to 12)
       // With y = -1/2 * a * t² in mind, here a = 4, t is some scaled down (divided by 20) frame difference, and as soon as this equation exceeds the terminal velocity, it is replaced by 12 (also y increases because we are going from top to bottom)
-      y += min(12, 2 * pow((_FRAME_COUNTER - f_destroyed)/20.0, 2));
+      y += min(12, 2 * pow((_frame_counter - f_destroyed)/20.0, 2));
       
       // The angle of fall is defined w.r.t. the y-axis velocity of fall. We derive the angle by linearly mapping the dy value (number between 0 and 12) to the angle interval (from 0 to 60 degrees)
-      angle_of_fall = map(min(12, 2 * pow((_FRAME_COUNTER - f_destroyed)/20.0, 2)), 0, 12, 0, -PI/3);
+      angle_of_fall = map(min(12, 2 * pow((_frame_counter - f_destroyed)/20.0, 2)), 0, 12, 0, -PI/3);
     }
     
-    detect_collision();
     garbage_collect();
     
-    f_updated = _FRAME_COUNTER;
+    f_updated = _frame_counter;
   }
   
-  void detect_collision(){
+  int receive_hit(int damage, int row, int col){
+    health -= damage;
+    return damage;
+  }
+  
+  /*void detect_collision(){
     // Same as in Enemy_1 but in a more compact form (if col, row is outside of the image, get() returns zero).
     int row, col;
     color pixel_color;
@@ -81,7 +83,7 @@ class Enemy_2 extends Enemy{
         health -= b.hit();
       }
     }
-  }
+  }*/
   
   void garbage_collect(){
     // When the object exits the frame from the left or the bottom (and is entirely out of the frame), we garbage collect it
