@@ -45,3 +45,9 @@ The base sprite is purposefully elongated, sacrificing memory efficiency, in ord
 
 
 ### Enemies
+In the original game, enemies, unlike the turrets, do not have names. So, they will hence be, rather creatively, called Enemy_1 and Enemy_2.
+
+#### Enemy_1
+This is a non-firing enemy with the main goal of inconveniently getting in front of other enemies or our turrets. Its animation consists of two sprites and looks like this
+
+![alt text](/images/Enemy_1_Animation.gif "Enemy_1 Animation")
