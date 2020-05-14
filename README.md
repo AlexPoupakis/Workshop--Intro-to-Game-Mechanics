@@ -72,6 +72,14 @@ The motion here is **much** simpler; just move from right to left with a constan
 </p>
 
 
+### Bullets
+The Machine Gun fires bullets in the form of straight line segments. These bullets travel in straight lines with constant speed and are considered points in the collision detection algorithm. The algorithm works by checking whether the sprite's pixel where the bullet is on is transparent or opaque for each enemy. If it is opaque, we have a collision and subsequent damage is dealt to the respective enemy.
+
+
+### Parallax scrolling
+Although most 2D games use the parallax effect to create the visual effect of looking outside a moving car, typically while the player also moves towards the left or right, I wanted to create a visually different, but principally the same, effect. Namely, I wanted to create the effect of moving the observer's head while remaining stationary.
+
+
 ## End Result
 <p align="center">
   <img src="/images/screenshot.png">
