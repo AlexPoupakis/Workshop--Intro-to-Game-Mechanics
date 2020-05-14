@@ -33,3 +33,6 @@ With some adaptability, the ideas can, of course, be transfered to the Engine of
 ### Game characteristics
 On the more technical side of things, our game was a frame-based shooter with distance units in pixels and time units in frame counts. This choice was made for simplicity's sake and so that we can (easily) slow down the game as much as we want, to closely observe the sprite sequences.
 
+
+### Turret
+The Machine Gun consists of two sprites, its base and head. 
