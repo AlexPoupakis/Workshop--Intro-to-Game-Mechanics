@@ -95,6 +95,7 @@ Firstly, you need to [install the latest version of Processing](https://processi
 ## Final Notes
 * You can export the sketch to a standalone, runnable application for your OS.
 * You _**need**_ to have the same name in the sketch's folder and the .pde file containing the `setup()` and `draw()` methods.
+* If you change anything in the file or folder structure in the shooter_game directory, you have to update the filepaths in the code.
 * Happy coding! :)
 
 
