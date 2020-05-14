@@ -61,7 +61,9 @@ Its motion is a bit complicated due to the turns and variable speed (only during
 </p>
 
 #### Enemy_2
-This one drops a bomb when it flies above a turret. A "bomb.png" sprite is included in the project files, however the implementation is left to you and should be simple enough once you understand the rest of the code. The motion here is **much** simpler; just move from right to left with a constant speed. Also, in contrast to other enemies in the original game, this one does not re-enter the frame if it is not destroyed before it exits.
+This one drops a bomb when it flies above a turret. A "bomb.png" sprite is included in the project files, however the implementation is left to you and should be simple enough once you understand the rest of the code. 
+
+The motion here is **much** simpler; just move from right to left with a constant speed. Also, in contrast to other enemies in the original game, this one does not re-enter the frame if it is not destroyed before it exits.
 
 <p align="center">
   <img src="/images/Enemy_2_Animation.gif">
