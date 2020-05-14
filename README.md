@@ -43,6 +43,9 @@ The Machine Gun consists of two sprites, its base and head. The provided coordin
 
 The base sprite is purposefully elongated, sacrificing memory efficiency, in order to represent a more realistic, physical base and simplifying the coordinate offsets in the code. We could obviously trim the sprite down to just the visible part and add the necessary offsets in the code, but since this results in less readable code,  I decided to discard the black magic constants and go with the intuition.
 
+<p align="center">
+  <img src="/images/Enemy_1_Motion_margin.png">
+</p>
 
 ### Enemies
 In the original game, enemies, unlike the turrets, do not have names. So, they will hence be, rather creatively, called Enemy_1 and Enemy_2.
