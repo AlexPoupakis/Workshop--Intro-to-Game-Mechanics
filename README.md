@@ -81,9 +81,16 @@ Although most 2D games use the parallax effect to create the visual effect of lo
 
 
 ## End Result
+Here is a screenshot of what all this effort translates into.
 <p align="center">
   <img src="/images/screenshot.png">
 </p>
+
+There is a detailed explanation of everything in the code comments.
+
+
+## How to run
+Firstly, you need to [install the latest version of Processing](https://processing.org/download/). Afterwards, download this repository to your computer.
 
 
 ## Disclaimer
