@@ -92,6 +92,12 @@ There is a detailed explanation of everything in the code comments.
 ## How to run
 Firstly, you need to [install the latest version of Processing](https://processing.org/download/). Afterwards, download this repository to your computer and extract it. Then, navigate to the extracted folder, go to the shooter_game directory, open the shooter_game.pde file with the Processing IDE and run it from there.
 
+In-game controls:
+- Aim with mouse
+- Left click to shoot
+- p to pause/unpause
+
+
 ## Final Notes
 * You can export the sketch to a standalone, runnable application for your OS.
 * You _**need**_ to have the same name in the sketch's folder and the .pde file containing the `setup()` and `draw()` methods.
